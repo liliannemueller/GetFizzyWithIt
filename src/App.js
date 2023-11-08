@@ -1,11 +1,15 @@
 import React from "react";
-
-const App = () =>{
-    return (
-        <h1>
-            Welcome to React App thats build using Webpack and Babel separately
-        </h1>
-    )
+import './styles/App.scss';
+function App() {
+  return (
+    <div className="App">
+      <header className='App-header'>Is It Fizzy?</header>
+      <div className='cocktail-container'>
+        <img src={'https://images.unsplash.com/photo-1581927692308-be9e43b4d860?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNvY2t0YWlsfGVufDB8fDB8fHww'} className="cocktail-img" alt="cocktail" />
+       </div>
+      
+    </div>
+  );
 }
 
-export default App
+export default App;
