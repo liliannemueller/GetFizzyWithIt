@@ -29,9 +29,9 @@ db.once("open", () => {
 });
 
 
-// const barsRouter = require('./src/routes/bars');
+const barsRouter = require('./src/routes/bars');
 
-// app.use('/bars', barsRouter);
+app.use('/bars', barsRouter);
 
 
 
