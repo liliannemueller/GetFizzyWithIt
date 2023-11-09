@@ -1,7 +1,3 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './src/App';
-
 // import { Loader } from "@googlemaps/js-api-loader";
 // const loader = new Loader({
 //   apiKey: process.env.GOOGLE_API_KEY,
@@ -10,12 +6,5 @@ import App from './src/App';
 // });
 
 // loader.importLibrary("maps").then((google) => {
-//   const root = createRoot(document.getElementById('root'));
-//     root.render(<App />);
+//   // Now you can use the Google Maps API safely
 // });
-const root = createRoot(document.getElementById('root'));
-    root.render(<App />);
-
-
-
-
