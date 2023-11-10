@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 
-function AutoCompleteSearch() {
+function AutoCompleteSearch({ onSelectBar }) {
   const [address, setAddress] = useState("");
+  const [barDetails, setBarDetails] = useState(null);
+
+   useEffect(() => {
+    console.log("barDetails:", barDetails);
+   }, [barDetails]);
+
 
   const handleSelect = (value, placeId) => {
     setAddress(value);
-    // You can now use the selected value and placeId as needed.
-    console.log("Selected Place:", value);
-    console.log("Place ID:", placeId);
+    if (onSelectBar) {
+      onSelectBar({ value, placeId });
+    }
+    extractName(value);
   };
+  function extractName(description) {
+      setBarDetails({
+          name: description.split(",")[0].trim(),
+          city: description.split(",")[2].trim(),
+          state: description.split(",")[3].trim(),
+      })  
+     console.log(`barDetails: ${barDetails}`)
+  }
+
 
   return (
     <div>
@@ -22,7 +38,7 @@ function AutoCompleteSearch() {
           <div>
             <input
               {...getInputProps({
-                placeholder: "Search for a place...",
+                placeholder: "What bar are you at?",
               })}
             />
             <div>
