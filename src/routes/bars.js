@@ -16,11 +16,11 @@ router.route('/').get((req, res) => {
 //if bar already in DB, push new rating to rating array
 router.route('/add').post((req, res) => {
     const name = req.body.name;
-    const placeId = req.body.placeId;
+    const place_id = req.body.place_id;
     const ratings = req.body.ratings;
 
 //check if the bar already exists in the database
-    Bar.findOne({placeId})
+    Bar.findOne({place_id})
         .then(existingBar => {
             if(existingBar) {
                 existingBar.ratings.push(ratings);
@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
             } else {
                 const newBar = new Bar({
                     name, 
-                    placeId, 
+                    place_id, 
                     ratings: [ratings]
                 });
                 newBar.save()
@@ -41,10 +41,10 @@ router.route('/add').post((req, res) => {
   
     });    
 
-router.route('/:placeId').get((req, res) => {
-  const placeId = req.params.placeId;
+router.route('/:place_id').get((req, res) => {
+  const place_id = req.params.place_id;
 
-  Bar.findOne({ placeId })
+  Bar.findOne({ place_id })
     .then(bar => {
       if (bar) {
         res.json(bar);

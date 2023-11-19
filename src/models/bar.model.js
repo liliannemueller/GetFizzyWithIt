@@ -6,7 +6,7 @@ const barSchema = new Schema({
         type: String,
         required: true
     },
-    placeId: {
+    place_id: {
         type: String,
         required: true,
         unique: true

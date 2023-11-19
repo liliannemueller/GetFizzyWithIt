@@ -20,10 +20,34 @@ function HomePage( {onSelectBar, barData} ) {
     //add logic to add fizzy rating to database
     const data = {
         name: selectedBar.value,  
-        place_id: selectedBar.placeId,
-        fizzyRating: fizzyValue,
+        place_id: selectedBar.place_id,
+        ratings: fizzyValue,
     }
-    console.log("BarDATA:",data)
+    console.log("BarData:",data)
+    //add bar info and rating to DB
+    //first, check if the bar is already in the DB by the place_id
+    
+
+    fetch('/bars/add', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => {
+            if (response.ok) {
+                // Request successful
+                console.log('Data submitted successfully');
+            } else {
+                // Request failed
+                console.error('Failed to submit data');
+            }
+            })
+            .catch(error => {
+            // Error occurred during the request
+            console.error('Error:', error);
+            });
     setFizzyValue(0);
   };
 

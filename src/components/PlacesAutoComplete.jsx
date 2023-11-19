@@ -10,10 +10,10 @@ function AutoCompleteSearch({ onSelectBar }) {
    }, [barDetails]);
 
 
-  const handleSelect = (value, placeId) => {
+  const handleSelect = (value, place_id) => {
     setAddress(value);
     if (onSelectBar) {
-      onSelectBar({ value, placeId });
+      onSelectBar({ value, place_id });
     }
     extractName(value);
   };
