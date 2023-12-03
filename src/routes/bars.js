@@ -20,20 +20,23 @@ router.route('/add').post((req, res) => {
     const ratings = req.body.ratings;
 
 //check if the bar already exists in the database
-    Bar.findOne({placeId})
+    Bar.findOne({ placeId })
         .then(existingBar => {
             if(existingBar) {
                 existingBar.ratings.push(ratings);
                 existingBar.save()
                     .then(() => res.json('Bar added!'))
                     .catch(err => res.status(400).json('Error:' + err));
+                    return;
             } else {
+                console.log(`creating new Bar object...`)
                 const newBar = new Bar({
                     name, 
                     placeId, 
                     ratings: [ratings]
                 });
-                newBar.save()
+                console.log(newBar)
+                return newBar.save()
                     .then(() => res.json('Bar added!'))
                     .catch(err => res.status(400).json('Error: ' + err));
             }      

@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 
 
 
-
 const app = express(); 
 const port = process.env.PORT || 5000; 
 app.use(cors());
@@ -32,6 +31,8 @@ db.once("open", () => {
 const barsRouter = require('./src/routes/bars');
 
 app.use('/bars', barsRouter);
+
+
 
 
 

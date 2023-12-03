@@ -5,9 +5,9 @@ function AutoCompleteSearch({ onSelectBar }) {
   const [address, setAddress] = useState("");
   const [barDetails, setBarDetails] = useState(null);
 
-   useEffect(() => {
-    console.log("barDetails:", barDetails);
-   }, [barDetails]);
+  //  useEffect(() => {
+  //   console.log("barDetails in UseEffect in AutoCompleteSearch:", barDetails);
+  //  }, [barDetails]);
 
 
   const handleSelect = (value, placeId) => {
@@ -23,8 +23,10 @@ function AutoCompleteSearch({ onSelectBar }) {
           city: description.split(",")[2].trim(),
           state: description.split(",")[3].trim(),
       })  
-     console.log(`barDetails: ${barDetails}`)
   }
+  useEffect(() => {
+  console.log(`barDetails after name extraction in ACS: ${barDetails}`);
+  }, [barDetails]);
 
 
   return (

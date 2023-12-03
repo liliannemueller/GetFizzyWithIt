@@ -13,6 +13,7 @@ const barSchema = new Schema({
     },
     ratings:{
         type: [Number],
+        default: [],
         required: true
     },
     date: {
