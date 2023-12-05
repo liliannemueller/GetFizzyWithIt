@@ -4,27 +4,52 @@ import PlacesAutoComplete from './PlacesAutoComplete'
 import Bar from "./Bar";
 import FizzyMeter from './FizzyMeter'
 
-function HomePage( {onSelectBar, barData} ) {
+function HomePage(  ) {
   const [selectedBar, setSelectedBar] = useState(null);
+  const [isBarSelected, setIsBarSelected] = useState(false);
+  const [isBarInDatabase, setIsBarInDatabase] = useState(false);
   const [fizzyValue, setFizzyValue] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSelectBar = (barData) => {
     setSelectedBar(barData);
+    setIsBarSelected(true);
     console.log(`selectedBar in handleSelect: ${selectedBar}`)
-    console.log(`barData in handleSelect: ${barData}`)
+    console.log(`barData in handleSelect: ${barData.value}`)
   };
+
   useEffect(() => {
-  console.log(`selectedBar: ${selectedBar}`);
+    setIsLoading(true);
+
+    if (selectedBar && selectedBar.placeId) {
+      // Make fetch request to check if bar is in the database
+      fetch(`http://localhost:5000/bars/${selectedBar.placeId}`)
+        .then((response) => {
+          if (response.ok) {
+            setIsBarInDatabase(true);
+          } else {
+            setIsBarInDatabase(false);
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
   }, [selectedBar]);
+
+useEffect(() => {
+  console.log(`isBarInDatabase: ${isBarInDatabase}`);
+}, [isBarInDatabase]);
 
   const handleFizzyMeterChange = (event) => {
     setFizzyValue(event.target.value);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`fizzyValue: ${fizzyValue}`)
-    
-    //add logic to add fizzy rating to database
+    //add fizzy rating to database
     const data = {
         name: selectedBar.value,  
         placeId: selectedBar.placeId,
@@ -55,17 +80,28 @@ function HomePage( {onSelectBar, barData} ) {
   };
 
   return (
-    <div>
-      <PlacesAutoComplete onSelectBar={handleSelectBar} />
-      {selectedBar && (
-      <div>
-        <Bar barData={selectedBar} />
-        <form onSubmit={handleSubmit}>
-                <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
+     <div>
+      {!isBarSelected && (
+        <PlacesAutoComplete onSelectBar={handleSelectBar} />
+      )}
+      {isBarSelected && (
+        <div>
+          {isBarInDatabase ? (
+            // Render Bar component with average ratings
+            <Bar barData={selectedBar} />
+          ) : (
+            // Render FizzyMeter component and submit button
+            <div>
+              <h1>You're the first to Review!</h1>
+              <form onSubmit={handleSubmit}>
+               <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
                 <button type="submit">Submit Rating</button>
-        </form>
-      </div>
-    )}
+              </form>
+            </div>
+          )}
+          <button onClick={() => setIsBarSelected(false)}>Back</button>
+        </div>
+      )}
     </div>
   );
 }

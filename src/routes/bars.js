@@ -29,13 +29,11 @@ router.route('/add').post((req, res) => {
                     .catch(err => res.status(400).json('Error:' + err));
                     return;
             } else {
-                console.log(`creating new Bar object...`)
                 const newBar = new Bar({
                     name, 
                     placeId, 
                     ratings: [ratings]
                 });
-                console.log(newBar)
                 return newBar.save()
                     .then(() => res.json('Bar added!'))
                     .catch(err => res.status(400).json('Error: ' + err));

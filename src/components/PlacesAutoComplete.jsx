@@ -3,7 +3,7 @@ import PlacesAutocomplete from "react-places-autocomplete";
 
 function AutoCompleteSearch({ onSelectBar }) {
   const [address, setAddress] = useState("");
-  const [barDetails, setBarDetails] = useState(null);
+  // const [barDetails, setBarDetails] = useState(null);
 
   //  useEffect(() => {
   //   console.log("barDetails in UseEffect in AutoCompleteSearch:", barDetails);
@@ -15,18 +15,18 @@ function AutoCompleteSearch({ onSelectBar }) {
     if (onSelectBar) {
       onSelectBar({ value, placeId });
     }
-    extractName(value);
+    // extractName(value);
   };
-  function extractName(description) {
-      setBarDetails({
-          name: description.split(",")[0].trim(),
-          city: description.split(",")[2].trim(),
-          state: description.split(",")[3].trim(),
-      })  
-  }
-  useEffect(() => {
-  console.log(`barDetails after name extraction in ACS: ${barDetails}`);
-  }, [barDetails]);
+  // function extractName(description) {
+  //     setBarDetails({
+  //         name: description.split(",")[0].trim(),
+  //         city: description.split(",")[2].trim(),
+  //         state: description.split(",")[3].trim(),
+  //     })  
+  // }
+  // useEffect(() => {
+  // console.log(`barDetails after name extraction in ACS: ${barDetails}`);
+  // }, [barDetails]);
 
 
   return (
