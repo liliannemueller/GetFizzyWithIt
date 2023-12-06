@@ -10,6 +10,7 @@ function HomePage(  ) {
   const [isBarInDatabase, setIsBarInDatabase] = useState(false);
   const [fizzyValue, setFizzyValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
 
   const handleSelectBar = (barData) => {
     setSelectedBar(barData);
@@ -55,7 +56,7 @@ useEffect(() => {
         placeId: selectedBar.placeId,
         ratings: fizzyValue,
     }
-    console.log("handlesubmit data:",data)
+    // console.log("handlesubmit data:",data)
     fetch('http://localhost:5000/bars/add', {
             method: 'POST',
             headers: {
@@ -67,20 +68,20 @@ useEffect(() => {
             if (response.ok) {
                 // Request successful
                 console.log('Data submitted successfully');
+                setReviewSubmitted(true); 
             } else {
                 // Request failed
                 console.error('Failed to submit data');
             }
             })
             .catch(error => {
-            // Error occurred during the request
             console.error('Error:', error);
             });
     setFizzyValue(0);
   };
 
   return (
-     <div>
+      <div>
       {!isBarSelected && (
         <PlacesAutoComplete onSelectBar={handleSelectBar} />
       )}
@@ -92,14 +93,25 @@ useEffect(() => {
           ) : (
             // Render FizzyMeter component and submit button
             <div>
-              <h1>You're the first to Review!</h1>
-              <form onSubmit={handleSubmit}>
-               <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
-                <button type="submit">Submit Rating</button>
-              </form>
+              {reviewSubmitted ? (
+                <div>
+                <h1>Thanks for your review!</h1>
+                <button onClick={() => setIsBarSelected(false)}>Back</button>
+                </div>
+              ) : (
+                <div>
+                  <h1>You're the first to Review!</h1>
+                  <form onSubmit={handleSubmit}>
+                    <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
+                    <button type="submit">Submit Rating</button>
+                  </form>
+                </div>
+              )}
             </div>
           )}
-          <button onClick={() => setIsBarSelected(false)}>Back</button>
+          {!reviewSubmitted && (
+            <button onClick={() => setIsBarSelected(false)}>Back</button>
+          )}
         </div>
       )}
     </div>
