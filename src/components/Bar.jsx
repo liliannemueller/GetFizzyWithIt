@@ -9,10 +9,27 @@ function Bar( {barData} ) {
     state: "",
   });
 
-  useEffect(() => {
+   useEffect(() => {
     if (barData) {
       // Call extractName when barData changes
       extractName(barData.value);
+
+      // Fetch ratings data for the bar
+      fetch(`http://localhost:5000/bars/${barData.placeId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Calculate the average rating
+          const ratingsArray = data.ratings || [];
+          const sum = ratingsArray.reduce((acc, rating) => acc + rating, 0);
+          const average = sum / (ratingsArray.length || 1);
+          const roundedAverage = Number(average.toFixed(2))
+
+          // Set the average rating
+          setAverageRating(roundedAverage);
+        })
+        .catch((error) => {
+          console.error("Error fetching ratings:", error);
+        });
     }
   }, [barData]);
 
@@ -28,12 +45,12 @@ function Bar( {barData} ) {
 
   return (
     <div>
-      <h2>Bar Name: {barDetails.name}</h2>
-      <h4>{barDetails.city}, {barDetails.state}</h4>
+      <h1>{barDetails.name}</h1>
+      <h3>{barDetails.city}, {barDetails.state}</h3>
       
       <div className="bar-container">
         <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29ja3RhaWx8ZW58MHx8MHx8fDA%3D"></img>  
-        <h4>Fizzy Rating:</h4>    
+        <h2>Fizzy Rating:{averageRating}</h2>    
     </div>
     </div>
   );
