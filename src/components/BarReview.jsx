@@ -75,9 +75,15 @@ useEffect(() => {
   const handleBack = () => {
     setFizzyValue(0);
     setReviewSubmitted(false);
+    // setIsBarInDatabase(false);
+    // setSelectedBar(null);
+  };
+  const backToSearch = () => {
+    setFizzyValue(0);
+    setReviewSubmitted(false);
     setIsBarInDatabase(false);
     setSelectedBar(null);
-  };
+  }
 
   return (
    <div>
@@ -89,6 +95,7 @@ useEffect(() => {
             <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
             <button type="submit">Submit Rating</button>
           </form>
+          <button onClick={backToSearch}>Back to Search</button>
         </div>
       ) : (
         <div>
