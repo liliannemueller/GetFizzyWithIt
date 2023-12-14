@@ -14,7 +14,7 @@ function HomePage() {
   return (
     <div className="homepage-container">
       {!selectedBar && <PlacesAutoComplete onSelectBar={handleSelectBar} />}
-      {selectedBar && <BarReview selectedBar={selectedBar} />}
+      {selectedBar && <BarReview selectedBar={selectedBar} setSelectedBar={setSelectedBar} />}
     </div>
   );
 }

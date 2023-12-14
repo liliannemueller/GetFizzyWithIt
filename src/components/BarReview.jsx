@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Bar from "./Bar";
 import FizzyMeter from "./FizzyMeter";
 
-function BarReview({ selectedBar }) {
+function BarReview({ selectedBar, setSelectedBar }) {
   const [fizzyValue, setFizzyValue] = useState(0);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const [isBarInDatabase, setIsBarInDatabase] = useState(false);
@@ -75,6 +75,8 @@ useEffect(() => {
   const handleBack = () => {
     setFizzyValue(0);
     setReviewSubmitted(false);
+    setIsBarInDatabase(false);
+    setSelectedBar(null);
   };
 
   return (
@@ -82,7 +84,7 @@ useEffect(() => {
       {!reviewSubmitted && <Bar barData={selectedBar} />}
       {!reviewSubmitted ? (
         <div>
-          <h1>{isBarInDatabase ? "Review this bar!" : "You're the first to Review!"}</h1>
+          <h1>{isBarInDatabase ? "Review this bar!" : "You're the first to review!"}</h1>
           <form onSubmit={handleSubmit}>
             <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
             <button type="submit">Submit Rating</button>
