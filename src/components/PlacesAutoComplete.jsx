@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
+import "../styles/PlacesAutoComplete.scss"
 
 function AutoCompleteSearch({ onSelectBar }) {
   const [address, setAddress] = useState("");

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Bar from "./Bar";
 import FizzyMeter from "./FizzyMeter";
+import "../styles/BarReview.scss"
 
 function BarReview({ selectedBar, setSelectedBar }) {
   const [fizzyValue, setFizzyValue] = useState(0);
