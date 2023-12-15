@@ -1,9 +1,35 @@
-.meter-container{
-    display:flex;
-    justify-content: center;
-
+.meter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-range{
-    width: 40%;
+#flat,
+#fizzy {
+  flex-grow: 1;
+  text-align: center; /* Center the text within the available space */
+}
+
+.form-range {
+  flex-grow: 2;
+  width: 30%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .meter-container {
+    align-items:flex-end;
+  }
+
+  #flat,
+  #fizzy {
+    flex-grow: 0; 
+  }
+
+  .form-range {
+    width: 80%;
+  }
 }
