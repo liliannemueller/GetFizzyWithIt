@@ -3,20 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>is it fizzy?</title>
-    <script>
-        function loadGoogleMaps() {
-                const apiKey = process.env.GOOGLE_API_KEY; 
-                const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
-                script.async = true;
-                document.head.appendChild(script);
-            }
-   </script>     
+    <title>Is it Fizzy?</title>
+    
 </head>
 <body>
     <div id="root"></div>
-    <script> loadGoogleMaps(); </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8hbDczUQdH5NYVBJ-gLmOd9GxVWMSlWs&libraries=places"></script>
+
     <script src="main.js"></script>
 </body>
 </html>
+

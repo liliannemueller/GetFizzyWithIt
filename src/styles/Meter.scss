@@ -1,0 +1,40 @@
+.range-container{
+  width: 100%;
+}
+
+
+.meter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#flat,
+#fizzy {
+  flex-grow: 1;
+  text-align: center; 
+}
+
+.form-range {
+  flex-grow: 2;
+  width: 30%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .meter-container {
+    align-items:flex-end;
+  }
+
+  #flat,
+  #fizzy {
+    flex-grow: 0; 
+  }
+
+  .form-range {
+    width: 80%;
+  }
+}
