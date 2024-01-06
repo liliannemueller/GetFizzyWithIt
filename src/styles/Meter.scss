@@ -1,3 +1,8 @@
+.range-container{
+  width: 100%;
+}
+
+
 .meter-container {
   display: flex;
   justify-content: center;
@@ -7,7 +12,7 @@
 #flat,
 #fizzy {
   flex-grow: 1;
-  text-align: center; /* Center the text within the available space */
+  text-align: center; 
 }
 
 .form-range {
@@ -19,7 +24,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .meter-container {
     align-items:flex-end;
   }

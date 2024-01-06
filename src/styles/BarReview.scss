@@ -1,14 +1,23 @@
-@media (max-width: 768px) {
-  /* Adjust styles for smaller screens */
+@media (max-width: 480px) {
   h1 {
-    font-size: 24px; /* Adjust the font size as needed */
+    font-size: 3rem;
   }
 
-  form {
-    
+  .message{
+    font-size: 1rem;
+  }
+  
+  .user-rating{
+    font-size: 1rem;
   }
 
-  button {
-    
+  .bar-name{
+    font-size: 3rem;
+  }
+  .bar-location{
+    font-size: 1.5rem;
+  }
+  .fizzy-rating{
+    font-size: 2rem;
   }
 }

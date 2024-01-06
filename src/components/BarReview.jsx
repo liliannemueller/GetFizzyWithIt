@@ -96,13 +96,13 @@ useEffect(() => {
             <FizzyMeter value={fizzyValue} onChange={handleFizzyMeterChange} />
             <button type="submit">Submit Rating</button>
           </form>
-          <button onClick={backToSearch}>Back to Search</button>
+          <button className="back-button" onClick={backToSearch}>Back to Search</button>
         </div>
       ) : (
         <div>
-          <h1>Thanks for your review!</h1>
-          <p>Your Fizzy Rating: {fizzyValue}</p>
-          <button onClick={handleBack}>Back</button>
+          <h2 className="message">Thanks for your review!</h2>
+          <p className="user-rating">Your Fizzy Rating: {fizzyValue}</p>
+          <button className="back-button" onClick={handleBack}>Back</button>
         </div>
       )}
     </div>

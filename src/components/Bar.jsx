@@ -45,11 +45,11 @@ function Bar( {barData} ) {
 
   return (
     <div>
-      <h1>{barDetails.name}</h1>
-      <h3>{barDetails.city}, {barDetails.state}</h3>
+      <h1 className="bar-name">{barDetails.name}</h1>
+      <h3 className= "bar-location">{barDetails.city}, {barDetails.state}</h3>
       <div className="bar-container">
         <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29ja3RhaWx8ZW58MHx8MHx8fDA%3D"></img>  
-        <h2>Fizzy Rating:{averageRating}</h2>    
+        <h2 className="fizzy-rating">Fizzy Rating:{averageRating}</h2>    
     </div>
     </div>
   );
